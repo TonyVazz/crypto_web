@@ -18,21 +18,21 @@ function App() {
 `;
 
   const Imagen = styled.img`
-  max-width: 400px;
-  width: 30%;
+  max-width: 800px;
+  width: 100%;
   margin: 100px auto 0 auto;
   display: block;
   
 `;
 
   const Heading = styled.h1`
-    font-family: 'Codystar', cursive;
+    font-family: 'DotGothic16', sans-serif;
     color: #FFF;
     text-align:center;
     font-weight: 700;
     margin-top: 150px;
-    margin-bottom: 70px;
-    font-size: 40px;
+    margin-bottom: 30px;
+    font-size: 60px;
 
     &::after{
       content:'';

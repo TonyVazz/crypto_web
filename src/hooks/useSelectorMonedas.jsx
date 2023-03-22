@@ -8,6 +8,9 @@ export const useSelectorMonedas = (label, divisas) => {
         font-size: 35px;
         padding-left: 47px;
         font-weight: 20;
+        margin-left: 45px;
+        font-family: 'Reggae One', cursive;
+        margin-top: 0px;
         `;
 
     const SelectSubmit = styled.select`
@@ -19,7 +22,8 @@ export const useSelectorMonedas = (label, divisas) => {
     font-weight: 900;
     font-size:20px;
     border-radius:12px;
-    margin: 20px;
+    margin-left: 85px;
+    margin-bottom: 30px;
     display:flex;
 `;
 
@@ -34,8 +38,7 @@ export const useSelectorMonedas = (label, divisas) => {
         <SelectSubmit 
         value={state}
         onChange={e => setState(e.target.value)
-        }>
-            
+        }> 
             <option>
                 Seleccione una divisa</option>
             {divisas.map(divisa =>(
