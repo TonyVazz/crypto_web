@@ -1,7 +1,8 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
 import styled from "@emotion/styled";
 import useSelectorMonedas from '../hooks/useSelectorMonedas';
 import {monedas} from '../data/monedas';
+import Error from './Error';
 
 const InputSubmit = styled.input`
     background-color: #9497FF;
@@ -18,6 +19,7 @@ const InputSubmit = styled.input`
         cursor: pointer;
     }
 `;
+
 // const SelectSubmit = styled.select`
 //     background-color: #9497FF;
 //     width: 37%;
@@ -35,32 +37,57 @@ const InputSubmit = styled.input`
 // `;
 
 const Formulario = () => {
-
-  const [state, SelectorMonedas] = useSelectorMonedas('Elige tu moneda', monedas);
+  const [cryptos, setCryptos] = useState([]);
+  const [error, setError] = useState(false);
+  const [moneda, SelectorMonedas] = useSelectorMonedas('Elige tu moneda', monedas);
+  const [cripto, SelectorCripto] = useSelectorMonedas('Elige tu crypto', cryptos);
   
-  return (
-    <div>
-      {/* droplist */}
-      {/* <Contenedor>
-      <SelectSubmit name="cryptosOne" id="pet-select">
-      <option value="">-</option>
-      <option value="ETH">ETH</option>
-      <option value="BTC">BTC</option>
-      <option value="Doge Coin">Doge Coin</option>
-      <option value="BNB">BNB</option>
-    </SelectSubmit>
-    <SelectSubmit name="cryptosOne" id="pet-select">
-      <option value="">-</option>
-      <option value="ETH">ETH</option>
-      <option value="BTC">BTC</option>
-      <option value="Doge Coin">Doge Coin</option>
-      <option value="BNB">BNB</option>
-    </SelectSubmit>
+  //consultar una api es con esto
+  useEffect(() => {
+    const consultarApi = async () => {
+      const url = "https://min-api.cryptocompare.com/data/top/mktcapfull?limit=100&tsym=USD";
+      const respuesta = await fetch(url);
+      const resultado = await respuesta.json();
+      
+      const arregloCryptos = resultado.Data.map(crypto => {
 
-      </Contenedor> */}
-    <form >
+        const objeto = {
+          id: crypto.CoinInfo.Name, 
+          nombre: crypto.CoinInfo.FullName,
+        }
+
+        // console.log(objeto);
+        return objeto;
+      },);
+      setCryptos(arregloCryptos);
+    }
+    consultarApi();
+  }, [])
+  
+  const manejadorSubmit = e => {
+    e.preventDefault();
+
+    if([moneda,cripto].includes('')){
+      console.log('ERROOOOOOOOOOOOOOOR')
+      setError(true);
+      return;
+    }
+    setError(false);
+
+    console.log('se envio el formulario');
+    console.log(moneda);
+    console.log(cripto)
+  }
+  return (  
+    <div>
+     {error && <Texto>Todos los campos son obligatorios</Texto>}
+    <form 
+      onSubmit={manejadorSubmit}
+    >
         <SelectorMonedas/>
-        {state}
+        {moneda}
+        <SelectorCripto/>
+        {cripto}
         <InputSubmit type="submit" value="Cotizar" />   
     </form>
     </div>
