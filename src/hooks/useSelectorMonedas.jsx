@@ -6,23 +6,23 @@ export const useSelectorMonedas = (label, divisas) => {
     const Label = styled.label`
         color: white;
         font-size: 35px;
-        padding-left: 47px;
+       
         font-weight: 20;
-        margin-left: 45px;
+       
         font-family: 'Reggae One', cursive;
         margin-top: 0px;
         `;
 
     const SelectSubmit = styled.select`
     background-color: #9497FF;
-    width: 63%;
+    width: 100%;
     padding: 10px;
     justify-content:center;
     color: white;
     font-weight: 900;
     font-size:20px;
     border-radius:12px;
-    margin-left: 85px;
+    
     margin-bottom: 30px;
     display:flex;
 `;

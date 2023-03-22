@@ -9,6 +9,7 @@ function App() {
   max-width: 900px;
   margin: 0 auto;
   width: 90%;
+  text-align: center;
   @media (min-width: 992px){
     display: grid;
     grid-template-columns: repeat(2,1fr);
@@ -22,6 +23,11 @@ function App() {
   width: 100%;
   margin: 100px auto 0 auto;
   display: block;
+  @media (max-width: 992px){
+    margin: 0;
+    margin-top: 50px;
+
+  }
   
 `;
 
@@ -30,7 +36,7 @@ function App() {
     color: #FFF;
     text-align:center;
     font-weight: 700;
-    margin-top: 150px;
+    margin-top: 70px;
     margin-bottom: 30px;
     font-size: 60px;
 
